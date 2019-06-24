@@ -1,0 +1,97 @@
+ID   Q9CCZ4_MYCLE              Reviewed;         256 AA.
+AC   Q6GZX4;
+DT   28-JUN-2011, integrated into UniProtKB/Swiss-Prot.
+DT   19-JUL-2004, sequence version 1.
+DT   16-JAN-2019, entry version 35.
+DE   RecName: Full=Putative transcription factor 001R;
+GN   ORFNames=FV3-001R;
+OS   Frog virus 3 (isolate Goorha) (FV-3).
+OC   Viruses; dsDNA viruses, no RNA stage; Iridoviridae; Alphairidovirinae;
+OC   Ranavirus.
+OX   NCBI_TaxID=654924;
+OH   NCBI_TaxID=8295; Ambystoma (mole salamanders).
+OH   NCBI_TaxID=30343; Dryophytes versicolor (chameleon treefrog).
+OH   NCBI_TaxID=8404; Lithobates pipiens (Northern leopard frog) (Rana pipiens).
+OH   NCBI_TaxID=8316; Notophthalmus viridescens (Eastern newt) (Triturus viridescens).
+OH   NCBI_TaxID=45438; Rana sylvatica (Wood frog).
+RN   [1]
+RP   NUCLEOTIDE SEQUENCE [LARGE SCALE GENOMIC DNA].
+RX   PubMed=15165820; DOI=10.1016/j.virol.2004.02.019;
+RA   Tan W.G., Barkman T.J., Gregory Chinchar V., Essani K.;
+RT   "Comparative genomic analyses of frog virus 3, type species of the
+RT   genus Ranavirus (family Iridoviridae).";
+RL   Virology 323:70-84(2004).
+CC   -!- FUNCTION: Transcription activation. {ECO:0000305}.
+DR   EMBL; AY548484; AAT09660.1; -; Genomic_DNA.
+DR   RefSeq; YP_031579.1; NC_005946.1.
+DR   ProteinModelPortal; Q6GZX4; -.
+DR   SwissPalm; Q6GZX4; -.
+DR   GeneID; 2947773; -.
+DR   KEGG; vg:2947773; -.
+DR   Proteomes; UP000008770; Genome.
+DR   GO; GO:0046782; P:regulation of viral transcription; IEA:InterPro.
+DR   InterPro; IPR007031; Poxvirus_VLTF3.
+DR   Pfam; PF04947; Pox_VLTF3; 1.
+PE   4: Predicted;
+KW   Activator; Complete proteome; Reference proteome; Transcription;
+KW   Transcription regulation.
+FT   CHAIN         1    256       Putative transcription factor 001R.
+FT                                /FTId=PRO_0000410512.
+FT   COMPBIAS     14     17       Poly-Arg.
+SQ   SEQUENCE   256 AA;  29735 MW;  B4840739BF7D4121 CRC64;
+     MAFSAEDVLK EYDRRRRMEA LLLSLYYPND RKLLDYKEWS PPRVQVECPK APVEWNNPPS
+     EKGLIVGHFS GIKYKGEKAQ ASEVDVNKMC CWVSKFKDAM RRYQGIQTCK IPGKVLSDLD
+     AKIKAYNLTV EGVEGFVRYS RVTKQHVAAF LKELRHSKQY ENVNLIHYIL TDKRVDIQHL
+     EKDLVKDFKA LVESAHRMRQ GHMINVKYIL YQLLKKHGHG PDGPDILTVK TGSKGVLYDD
+     SFRKIYTDLG WKFTPL
+//
+ID   002L_FRG3G              Reviewed;         320 AA.
+AC   Q6GZX3;
+DT   28-JUN-2011, integrated into UniProtKB/Swiss-Prot.
+DT   19-JUL-2004, sequence version 1.
+DT   16-JAN-2019, entry version 36.
+DE   RecName: Full=Uncharacterized protein 002L;
+GN   ORFNames=FV3-002L;
+OS   Frog virus 3 (isolate Goorha) (FV-3).
+OC   Viruses; dsDNA viruses, no RNA stage; Iridoviridae; Alphairidovirinae;
+OC   Ranavirus.
+OX   NCBI_TaxID=654924;
+OH   NCBI_TaxID=8295; Ambystoma (mole salamanders).
+OH   NCBI_TaxID=30343; Dryophytes versicolor (chameleon treefrog).
+OH   NCBI_TaxID=8404; Lithobates pipiens (Northern leopard frog) (Rana pipiens).
+OH   NCBI_TaxID=8316; Notophthalmus viridescens (Eastern newt) (Triturus viridescens).
+OH   NCBI_TaxID=45438; Rana sylvatica (Wood frog).
+RN   [1]
+RP   NUCLEOTIDE SEQUENCE [LARGE SCALE GENOMIC DNA].
+RX   PubMed=15165820; DOI=10.1016/j.virol.2004.02.019;
+RA   Tan W.G., Barkman T.J., Gregory Chinchar V., Essani K.;
+RT   "Comparative genomic analyses of frog virus 3, type species of the
+RT   genus Ranavirus (family Iridoviridae).";
+RL   Virology 323:70-84(2004).
+CC   -!- SUBCELLULAR LOCATION: Host membrane {ECO:0000305}; Single-pass
+CC       membrane protein {ECO:0000305}.
+DR   EMBL; AY548484; AAT09661.1; -; Genomic_DNA.
+DR   RefSeq; YP_031580.1; NC_005946.1.
+DR   ProteinModelPortal; Q6GZX3; -.
+DR   GeneID; 2947774; -.
+DR   KEGG; vg:2947774; -.
+DR   Proteomes; UP000008770; Genome.
+DR   GO; GO:0033644; C:host cell membrane; IEA:UniProtKB-SubCell.
+DR   GO; GO:0016021; C:integral component of membrane; IEA:UniProtKB-KW.
+DR   InterPro; IPR004251; Pox_virus_G9/A16.
+DR   Pfam; PF03003; Pox_G9-A16; 1.
+PE   4: Predicted;
+KW   Complete proteome; Host membrane; Membrane; Reference proteome;
+KW   Transmembrane; Transmembrane helix.
+FT   CHAIN         1    320       Uncharacterized protein 002L.
+FT                                /FTId=PRO_0000410509.
+FT   TRANSMEM    301    318       Helical. {ECO:0000255}.
+FT   COMPBIAS    263    295       Pro-rich.
+SQ   SEQUENCE   320 AA;  34642 MW;  9E110808B6E328E0 CRC64;
+     MSIIGATRLQ NDKSDTYSAG PCYAGGCSAF TPRGTCGKDW DLGEQTCASG FCTSQPLCAR
+     IKKTQVCGLR YSSKGKDPLV SAEWDSRGAP YVRCTYDADL IDTQAQVDQF VSMFGESPSL
+     AERYCMRGVK NTAGELVSRV SSDADPAGGW CRKWYSAHRG PDQDAALGSF CIKNPGAADC
+     KCINRASDPV YQKVKTLHAY PDQCWYVPCA ADVGELKMGT QRDTPTNCPT QVCQIVFNML
+     DDGSVTMDDV KNTINCDFSK YVPPPPPPKP TPPTPPTPPT PPTPPTPPTP PTPRPVHNRK
+     VMFFVAGAVL VAILISTVRW
+//
