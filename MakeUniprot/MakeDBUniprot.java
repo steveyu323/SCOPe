@@ -105,6 +105,8 @@ public class MakeDBUniprot {
           }
 
           if (id_set.contains(longID)) {
+            System.out.println("longID: " + longID);
+            //System.out.println("seq: " + seq);
             int seqID = MakeDomainSeq.lookupOrCreateSeq(seq);
 
             System.out.println("id = '"+longID+"'");
