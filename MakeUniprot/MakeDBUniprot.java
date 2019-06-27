@@ -106,7 +106,7 @@ public class MakeDBUniprot {
 
           if (id_set.contains(longID)) {
             System.out.println("longID: " + longID);
-            //System.out.println("seq: " + seq);
+            System.out.println("seq: " + seq.length());
             int seqID = MakeDomainSeq.lookupOrCreateSeq(seq);
 
             System.out.println("id = '"+longID+"'");
@@ -152,14 +152,15 @@ public class MakeDBUniprot {
               stmt1.setString(1,longID);
               stmt1.executeUpdate();
 
-              longID= null;
-              name=null;
-              seq="";
-              seqVer = 0;
-              seqDate = null;
-              accs = null;
+
             }
           }
+          longID= null;
+          name=null;
+          seq="";
+          seqVer = 0;
+          seqDate = null;
+          accs = null;
         }
       }
     } catch (Exception e) {

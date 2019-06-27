@@ -14,6 +14,7 @@ java gov.lbl.scop.app.MakePDBSeqadv35Debug_YCH
 
 java gov.lbl.scop.app.MakePDBSeqadv35Debug_JMC
 
+javac MakeDBUniprot.java
 java gov.lbl.scop.app.MakeDBUniprot /lab/db/uniprot/20190410/uniprot_sprot.dat.gz
 
 export JAVA_HOME="/h/ych323/jdk/jdk1.8.0_171"
