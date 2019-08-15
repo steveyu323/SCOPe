@@ -19,7 +19,7 @@ and then insert them into db if they are the missing ones from the missing_unipr
 run on uniprot_sprot.dat.gz and uniprot_trembl.dat.gz
 */
 
-public class MakeDBUniprot {
+public class ResolveInvalidUniprot2 {
   final public static SimpleDateFormat uniprotDateFormat =
   new SimpleDateFormat ("dd-MMM-yyyy");
 
@@ -27,14 +27,8 @@ public class MakeDBUniprot {
     try {
       LocalSQL.connectRW();
       Statement stmt = LocalSQL.createStatement();
-      PreparedStatement stmt1 = LocalSQL.prepareStatement("update missing_uniprot set miss_type=6 where long_id=?");
-      PreparedStatement stmt2 = LocalSQL.prepareStatement("insert into uniprot values (null, ?, ?, ?, ?, ?, 0)",
-      Statement.RETURN_GENERATED_KEYS);
-      PreparedStatement stmt3 = LocalSQL.prepareStatement("insert into uniprot_accession values (?, ?)");
-      PreparedStatement stmt4 = LocalSQL.prepareStatement("insert into uniprot_seq values (?, ?)");
-      PreparedStatement stmt5 = LocalSQL.prepareStatement("delete from uniprot where long_id = ?");
-
-
+      PreparedStatement stmt1 = LocalSQL.prepareStatement("update missing_acc set catched=1 where db_accesion=?");
+      PreparedStatement stmt2 = LocalSQL.prepareStatement("insert into missing_match values (?, ?)");
       //PreparedStatement stmt5 = LocalSQL.prepareStatement("delete from uniprot_seq where uniprot_id=?");
 
       ResultSet rs;
@@ -51,16 +45,18 @@ public class MakeDBUniprot {
       // if (skipLines==0)
       // stmt.executeUpdate("update uniprot set is_obsolete=1 where is_swissprot="+(isSprot ? 1 : 0));
 
-
       // parse in the long_id with miss_type = 1
-      Set<String> id_set = new HashSet<String>();
+      Set<String> acc_set = new HashSet<String>();
       ResultSet rs1;
-      rs1 = stmt.executeQuery("select long_id from missing_uniprot where miss_type = 2");
+      rs1 = stmt.executeQuery("select db_accesion from missing_acc where catched = 0");
       while (rs1.next()) {
         String acc = rs1.getString(1);
-        id_set.add(acc);
+        acc_set.add(acc);
       }
 
+      if (acc_set.contains("Q53Y18")) {
+        System.out.println("have it!!!!!");
+      }
 
       // add the sequences with miss_type = 1 into the uniprot table
       BufferedReader infile = IO.openReader(argv[0]);
@@ -107,62 +103,28 @@ public class MakeDBUniprot {
             }
           }
 
-          if (id_set.contains(longID)) {
-            System.out.println("longID: " + longID);
-            System.out.println("seq: " + seq.length());
-            int seqID = MakeDomainSeq.lookupOrCreateSeq(seq);
+          for (int i=0; i<accs.length; i++) {
+            String acc = accs[i].trim();
+            //For debug
+            if (acc.equals("P02679")) {
+              System.out.println(accs);
+            }
 
-            System.out.println("id = '"+longID+"'");
-            System.out.println("seqVer = '"+seqVer+"'");
-            System.out.println("seqDate = '"+ParsePDB.sqlDateFormat.format(seqDate)+"'");
-            System.out.println("name = '"+name+"'");
-            for (int i=0; i<accs.length; i++)
-            System.out.println("acc = '"+accs[i].trim()+"'");
-            System.out.println("seq = '"+seq+"'");
-            System.out.println("seqID = '"+seqID+"'");
+            if (acc_set.contains(acc)) {
+                //add to uniprot_accession table
+                System.out.println("acc = '"+acc+"'");
+                System.out.println("debug: update missing_match");
+                stmt2.setString(1,acc);
+                stmt2.setString(2,longID);
+                stmt2.executeUpdate();
 
-            // add to uniprot table
-            if (skipLines <= 0) {
-              // for miss_type = 2, delete the original entry before update all the tables
-              stmt5.setString(1,longID);
-              stmt5.executeUpdate();
-
-
-              stmt2.setString(1,longID);
-              stmt2.setInt(2,isSprot?1:0);
-              stmt2.setInt(3,seqVer);
-              stmt2.setDate(4,new java.sql.Date(seqDate.getTime()));
-              stmt2.setString(5,name);
-              System.out.println("debug: update uniprot");
-              stmt2.executeUpdate();
-              rs = stmt2.getGeneratedKeys();
-              rs.next();
-              id = rs.getInt(1);
-              rs.close();
-
-              // update the uniprot_seq table as well
-              System.out.println("debug: update uniprot_seq");
-              stmt4.setInt(1,id);
-              stmt4.setInt(2,seqID);
-              stmt4.executeUpdate();
-
-              //add to uniprot_accession table
-              System.out.println("debug: update uniprot_accession");
-              stmt.executeUpdate("delete from uniprot_accession where uniprot_id="+id);
-              stmt3.setInt(1,id);
-              for (int i=0; i<accs.length; i++) {
-                stmt3.setString(2,accs[i].trim());
-                stmt3.executeUpdate();
-              }
-
-              // change the miss_type from 1 to 4
-              System.out.println("debug: update missing_uniprot");
-              stmt1.setString(1,longID);
-              stmt1.executeUpdate();
-
-
+                // change the miss_type from 1 to 5
+                System.out.println("debug: update missing_acc");
+                stmt1.setString(1,acc);
+                stmt1.executeUpdate();
             }
           }
+
           longID= null;
           name=null;
           seq="";

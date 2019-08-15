@@ -1,0 +1,61 @@
+---
+title: "ResolveInvalid"
+author: "Changhua Yu"
+date: "8/4/2019"
+output: html_document
+---
+
+1. export the missing_uniprot table from doppelbock server into scop server by tsv file
+`mysql -h scop scop -e "select * from pdb_chain_dbref" > pdb_chain_dbref_scop.tsv`
+
+`CREATE TABLE pdb_chain_dbref_scop (id INT NOT NULL AUTO_INCREMENT,pdb_chain_id INT NOT NULL,db_name TEXT NOT NULL,db_code TEXT NOT NULL, db_accession TEXT,db_align_start INT NOT NULL,db_align_end INT NOT NULL,pdb_align_start INT,pdb_align_end INT, PRIMARY KEY (id));`
+
+`LOAD DATA INFILE 'pdb_chain_dbref_scop.tsv' INTO TABLE pdb_chain_dbref_scop FIELDS TERMINATED BY '\t' ENCLOSED BY '"'LINES TERMINATED BY '\n' IGNORE 1 ROWS;`
+
+2. within doppelbock server query the 
+`select * from pdb_chain_dbref_scop where db_code in (select long_id from missing_uniprot where miss_type = 1)`
+
+4. perform the original resolving on the code
+
+
+MatchInvalidUniprot.java:
+- for every missing entry, first query the uniprot db_accession code from pdb_chain_dbref table 
+- Then match back to check uniprot_accession to see if there's a corresponding uniprot_id. 
+- If there is one, the script will query the valid long_id, store the obsolete and valid long_id pair in a new table, and update the missing_type to 5.
+
+
+`CREATE TABLE missing_acc (db_accesion TEXT NOT NULL,db_code TEXT NOT NULL, catched INT NOT NULL);`
+`CREATE TABLE missing_match (db_accesion TEXT NOT NULL,valid_code TEXT NOT NULL);`
+
+The missing_uniprot table is being mutated incorrectly, in that miss_type = 5 are the valid db_code but not the invalid ones
+
+1. rebuild the missing_uniprot table
+`CREATE TABLE missing_uniprot (long_id TEXT NOT NULL,miss_type INT NOT NULL);`
+
+2. rerun MakeDBUniprot with 2019 version
+`java gov.lbl.scop.app.MakeDBUniprot /lab/db/uniprot/20190410/uniprot_sprot.dat`
+`java gov.lbl.scop.app.MakeDBUniprot /lab/db/uniprot/20190410/uniprot_trembl.dat`
+
+3. miss_type = 1 have 5905 entries
+`java gov.lbl.scop.app.ResolveInvalidUniprot1`
+`java gov.lbl.scop.app.ResolveInvalidUniprot2 lab/db/uniprot/20190410/uniprot_sprot.dat`
+
+4529 entries in missing_acc got resolved from previous round. 
+
+The long_id are all distinct
+`select distinct(long_id) from missing_uniprot where long_id in (select db_code from missing_acc where catched = 1);`
+
+`update missing_uniprot set miss_type=5 where long_id in (select db_code from missing_acc where catched = 1)`
+
+
+
+`java gov.lbl.scop.app.ResolveInvalidUniprot2 lab/db/uniprot/20190410/uniprot_trembl.dat`
+`update missing_uniprot set miss_type=5 where long_id in (select db_code from missing_acc where catched = 1)`
+
+
+
+190814 
+edit MakeDBUniprot to resolve miss_type = 2 and update to miss_type = 6
+`java gov.lbl.scop.app.MakeDBUniprot /lab/db/uniprot/20190410/uniprot_sprot.dat`
+`java gov.lbl.scop.app.MakeDBUniprot /lab/db/uniprot/20190410/uniprot_trembl.dat`
+

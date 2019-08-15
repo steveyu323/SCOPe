@@ -5,6 +5,9 @@ cd astral-bin/java/scop/svn/gov/lbl/scop/app/
 
 setenv CLASSPATH /lab/lib/java/strbiolib/cur/src/:/h/ych323/astral-bin/java/scop/svn/:/lab/lib/java/mysql-connector-java-5.1.7-bin.jar:/lab/lib/java/biojava-1.5-beta2.jar:/lab/lib/java/javamail/cur/mail.jar:/lab/lib/java/jaf/cur/activation.jar:/lab/lib/java/apache-commons/commons-cli.jar
 
+export JAVA_HOME="/h/ych323/jdk/jdk1.8.0_171"
+export PATH="$JAVA_HOME/bin:$PATH"
+
 
 javac MakePDBSeqadv35Debug_YCH.java
 
@@ -16,9 +19,11 @@ java gov.lbl.scop.app.MakePDBSeqadv35Debug_JMC
 
 javac MakeDBUniprot.java
 java gov.lbl.scop.app.MakeDBUniprot /lab/db/uniprot/20190410/uniprot_sprot.dat.gz
+java gov.lbl.scop.app.MakeDBUniprot /lab/db/uniprot/20190410/uniprot_trembl.dat.gz
 
-export JAVA_HOME="/h/ych323/jdk/jdk1.8.0_171"
-export PATH="$JAVA_HOME/bin:$PATH"
+java gov.lbl.scop.app.ResolveInvalidUniprot2 
+
+
 
 scp /Users/changhua/desktop/temp/190129/MakePDBSeqadv35Debug_YCH.java ych323@stout.lbl.gov:/mnt/net/ipa.jmcnet/data/h/ych323/astral-bin/java/scop/svn/gov/lbl/scop/app/
 

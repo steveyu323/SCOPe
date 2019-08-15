@@ -1,0 +1,33 @@
+ID   FIBG_HUMAN              Reviewed;         453 AA.
+AC   P02679; A8K057; P04469; P04470; Q53Y18; Q96A14; Q96KJ3; Q9UC62;
+AC   Q9UC63; Q9UCF3;
+DT   21-JUL-1986, integrated into UniProtKB/Swiss-Prot.
+DT   16-APR-2002, sequence version 3.
+DT   13-FEB-2019, entry version 236.
+DE   RecName: Full=Fibrinogen gamma chain;
+DE   Flags: Precursor;
+GN   Name=FGG; ORFNames=PRO2061;
+OS   Homo sapiens (Human).
+OC   Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
+OC   Mammalia; Eutheria; Euarchontoglires; Primates; Haplorrhini;
+OC   Catarrhini; Hominidae; Homo.
+OX   NCBI_TaxID=9606;
+RN   [1]
+RP   NUCLEOTIDE SEQUENCE [GENOMIC DNA / MRNA].
+RX   PubMed=6688357; DOI=10.1021/bi00282a033;
+RA   Chung D.W., Chan W.-Y., Davie E.W.;
+RT   "Characterization of a complementary deoxyribonucleic acid coding for
+RT   the gamma chain of human fibrinogen.";
+RL   Biochemistry 22:3250-3256(1983).
+RN   [2]
+RP   NUCLEOTIDE SEQUENCE [GENOMIC DNA / MRNA] (ISOFORMS GAMMA-A AND
+RP   GAMMA-B).
+RX   PubMed=2990550; DOI=10.1021/bi00329a041;
+RA   Rixon M.W., Chung D.W., Davie E.W.;
+RT   "Nucleotide sequence of the gene for the gamma chain of human
+RT   fibrinogen.";
+RL   Biochemistry 24:2077-2086(1985).
+RN   [3]
+RP   NUCLEOTIDE SEQUENCE [LARGE SCALE MRNA] (ISOFORMS GAMMA-A AND GAMMA-B).
+RC   TISSUE=Liver;
+RX   PubMed=14702039; DOI=10.1038/ng1285;
