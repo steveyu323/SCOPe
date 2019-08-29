@@ -59,3 +59,25 @@ edit MakeDBUniprot to resolve miss_type = 2 and update to miss_type = 6
 `java gov.lbl.scop.app.MakeDBUniprot /lab/db/uniprot/20190410/uniprot_sprot.dat`
 `java gov.lbl.scop.app.MakeDBUniprot /lab/db/uniprot/20190410/uniprot_trembl.dat`
 
+MySQL 
+[scop]> select count(*) from missing_uniprot where miss_type = 6;
++----------+
+| count(*) |
++----------+
+|    13007 |
++----------+
+1 row in set (0.04 sec)
+[scop]> select count(*) from missing_uniprot where miss_type = 2;
++----------+
+| count(*) |
++----------+
+|     2975 |
++----------+
+
+190817
+resolve the Invalid ones in missing_type = 2;
+`java gov.lbl.scop.app.ResolveInvalidUniprot1`
+`java gov.lbl.scop.app.ResolveInvalidUniprot2 /lab/db/uniprot/20190410/uniprot_sprot.dat`
+`java gov.lbl.scop.app.ResolveInvalidUniprot2 /lab/db/uniprot/20190410/uniprot_trembl.dat`
+
+

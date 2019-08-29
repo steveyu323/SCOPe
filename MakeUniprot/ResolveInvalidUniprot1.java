@@ -27,7 +27,7 @@ public class ResolveInvalidUniprot1 {
       //type == 0 ---> in both uniprot seq and uniprot table
       //type == 1 ---> not in the uniprot table
       //type == 2 ---> not in the uniprot_seq mapping but in uniprot table
-      rs1 = stmt.executeQuery("select long_id from missing_uniprot where miss_type = 1");
+      rs1 = stmt.executeQuery("select long_id from missing_uniprot where miss_type = 2");
       while (rs1.next()) {
         String missed_id = rs1.getString(1);
         System.out.println("long_id = " + missed_id);
