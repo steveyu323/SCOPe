@@ -48,7 +48,7 @@ The long_id are all distinct
 `update missing_uniprot set miss_type=5 where long_id in (select db_code from missing_acc where catched = 1)`
 
 
-
+update the catched invalid entries to miss_type = 5
 `java gov.lbl.scop.app.ResolveInvalidUniprot2 lab/db/uniprot/20190410/uniprot_trembl.dat`
 `update missing_uniprot set miss_type=5 where long_id in (select db_code from missing_acc where catched = 1)`
 
