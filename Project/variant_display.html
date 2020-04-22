@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+<!-- library from EBI-PDBe -->
+    <!-- d3.js dependency script -->
+    <script src="https://cdn.jsdelivr.net/npm/d3@5.9.2" defer></script>
+    <!-- Complied & minified library css -->
+    <link rel="stylesheet" href="//www.ebi.ac.uk/pdbe/pdb-component-library/v1.0/css/pdb.component.library.min-1.0.0.css" />
+
+    <!-- Dependency scripts (these can be skipped if already included in page) -->
+    <script src="//www.ebi.ac.uk/pdbe/pdb-component-library/libs/d3.min.js"></script>
+    <script src="//www.ebi.ac.uk/pdbe/pdb-component-library/libs/angular.1.4.7.min.js"></script>
+
+
+    <!-- Complied & minified library JS -->
+    <script src="//www.ebi.ac.uk/pdbe/pdb-component-library/v1.0/js/pdb.component.library.min-1.0.0.js"></script>
+
+<!-- Local Libraries for PDB components -->
+    <script src="script.js"></script>
+    <script type="text/javascript" src="./pdb-topology-viewer/build/pdb-topology-viewer-component-2.0.0.js" defer></script>
+
+    <!-- minified component css for sequence viewer -->
+    <link rel="stylesheet" type="text/css" href="./pdb-sequence-viewer/build/pdb.sequence.viewer.min.css">
+    <!-- minified component js for sequence viewer-->
+    <script src="./pdb-sequence-viewer/build/pdb.sequence.viewer.min.js"></script>
+
+    <!-- PDB Prints CSS and script -->
+    <link rel="stylesheet" href="./pdb-prints/build/pdb.prints.min.css" />
+    <script src="./pdb-prints/build/pdb.prints.min.js"></script>
+
+    <!-- minified component CSS and script -->
+    <link rel="stylesheet" href="./pdb-uniprot-viewer/build/pdb.uniprot.viewer.min.css" />
+    <script src="./pdb-uniprot-viewer/build/pdb.uniprot.viewer.min.js"></script>
+
+<!--    <link rel="stylesheet" href="./pdb-lite-mol/build/pdb.litemol.min.css" />-->
+<!--    <script src="./pdb-lite-mol/build/pdb.litemol.min.js"></script>-->
+<!--    <script src="./pdb-lite-mol/build/pdb.litemol.bundle.min.js"></script>-->
+
+
+
+<!--    <link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAD5UExURQAAACQ1RH6SkoKVli2h2tI/LBIXL2xrYoibnJZdqC2d1ZNboxMPJdFGKhK1eIdUt+iJMC2g2fMvItFALC0+TS+59x6wdCw7SiErPS2g25VdpuOGOh5aSYGUlZNbqueHOM89LCs9TOSHOYCTlRYYMR2vbyY8S5ZdqO+JMxyuc8w/K4CTlR6wdOaJO9VALSw9TIGUluSHOiye1phfqn6Tliuf1uKHNZpgqx2odB+ydh6vdCUuQWhLkxcaMh+zd4OXmeSHOy2j3OqKPCw+TBYZMZlfq5deqR6vdNRBLS5ATtVBLS4/Ti6n4tpCLi0/TS9BUJ1ir5xhrdNBLSJTHIoAAAA9dFJOUwBhG+vl4Y8FNOkhHGwkczFj0ybY/SuMnDYyzJ4YyjWSL+A1y+OClc4PPz7a5N+7oszox66svGDFLNj0mDZdQChMAAABH0lEQVQ4y4XRWVuCQBSA4QmBgZS0rIQitsDc27cLULFFTdv+/49piJmQQU/c8XzvGR7mIJR/BAWBj3BRAoVwMhx2MdxLypb+T393dbDvTz6a6/sp7bOmM9CAedKlZV3bPN8wHel7zouV/vC4sydNeXGTzfeiqCA8W+nSjvFh9MoLrx/bStLfGsktFgS+i0exjd1Z2gvCurdqIyJ095xtISeq6pda/RVmtiUmpnUHlc+eX1Jx/AewScVS6qB1Qvb1VAw6yWv5iBNyGPpmkAg6wZ0hh09hxTCCqNdm31w5o5X2A1E0gnZ2lUzElxrt48VtbhdU9D3Wx7vbqCis1saeiE/VAjoR13Bn/wd0pPtwJ6JigJ1s6WoBdoQMEe5E8P0HpPxDW5UCLSMAAAAASUVORK5CYII=" />-->
+
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1" />-->
+<!--    <title>LiteMol Commands Example</title>-->
+<!--    <link rel="stylesheet" href="../../assets/css/LiteMol-plugin.css?lmversion=1560000687070" type="text/css" />-->
+<!--    <script src="../../assets/js/LiteMol-plugin.js?lmversion=1560000687070"></script>-->
+
+
+
+
+
+    <!-- rich snippets for google search result formatting -->
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            "name": "PDB Component Library > Documentation",
+            "url": "http://www.ebi.ac.uk/pdbe/pdb-component-library/documentation.html",
+            "description": "The PDB Component Library is a collection of web-components for visualization of PDB and related protein structural data. All the widgets are easy to add, customise and extend. Please refer the documentation for more details."
+        }
+    </script>
+    <script>
+        //check IE version
+        var iev = 0;
+        var ieold = (/MSIE (\d+\.\d+);/.test(navigator.userAgent));
+        var trident = !!navigator.userAgent.match(/Trident\/7.0/);
+        var rv = navigator.userAgent.indexOf("rv:11.0");
+
+        //if (ieold) iev = new Number(RegExp.$1);
+        if (ieold) iev = 8;
+        if (navigator.appVersion.indexOf("MSIE 10") != -1) iev = 10;
+        if (trident && rv != -1) iev = 11;
+
+        if (iev > 0 && iev < 11) {
+            document.getElementById('ieSupportWarningMsg').style.display = 'block';
+        }
+    </script>
+
+    <!-- Bootstrap Grid -->
+    <link data-require="bootstrap-css@3.3.6" data-semver="3.3.6" rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css"/>
+
+    <!-- EBI Global CSS Start Here -->
+    <link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/develop/boilerplate-style.css">
+    <link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/develop/ebi-global.css" type="text/css"
+          media="screen">
+    <link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/develop/ebi-visual.css" type="text/css"
+          media="screen">
+    <link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/develop/984-24-col-fluid.css"
+          type="text/css" media="screen">
+    <link rel="stylesheet" href="//www.ebi.ac.uk/pdbe/entry/css/pdbe-green-colours.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="//www.ebi.ac.uk/pdbe/entry/css/pdbe-atlas.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="//www.ebi.ac.uk/pdbe/entry/css/pdbe-global.css" type="text/css" media="screen">
+    <!-- EBI Global CSS End Here -->
+
+
+    <script>
+        // Code goes here
+        var app = angular.module('pclDemo',['pdb.component.library']);
+        app.config(function($locationProvider) {
+            $locationProvider.html5Mode({
+                enabled: true,
+                requireBase: false
+            });
+        });
+
+        app.directive('pdbeComp',function($compile){
+            return {
+                restrict: 'C',
+                link: function(scope, element, attrs){
+
+                    var compMainDiv = document.getElementById(attrs.displayIn);
+                    var template = element.text();
+                    var compContent =  $compile(template)(scope);
+
+                    angular.element(compMainDiv).prepend(compContent);
+
+                    element.bind('blur', function() {
+                        template = element.text();
+                        compContent =  $compile(template)(scope);
+                        angular.element(compMainDiv).html('');
+                        angular.element(compMainDiv).prepend(compContent);
+                        scope.flag = 1;
+                    });
+
+
+                }
+            }
+        });
+
+        var hideTable = function(comp){
+            comp.nextElementSibling.style.display = 'block'
+            comp.nextElementSibling.nextElementSibling.style.display = 'none'
+            comp.style.display = 'none'
+        }
+
+        var showTable = function(comp){
+            comp.previousElementSibling.style.display = 'block'
+            comp.nextElementSibling.style.display = 'block'
+            comp.style.display = 'none'
+        }
+
+    </script>
+
+
+
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The 3 meta tags above must come first in the head, before other meta tags -->
+    <meta name="description"
+          content="SCOPe: Structural Classification of Proteins &mdash; extended database, and ASTRAL compendium for protein structure and sequence analysis">
+    <meta name="keywords" content="SCOP, SCOPe, ASTRAL, protein structure, evolution, domain, classification">
+    <title>SCOPe 2.05: Structural Classification of Proteins &mdash; extended</title>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css"
+          type="text/css">
+    <LINK rel="stylesheet" href="https://scop.berkeley.edu/css/lightbox.css" type="text/css">
+    <!-- custom theme http://getbootstrap.com/customize/?id=c103b402850e953369f8  -->
+    <link rel="stylesheet" href="https://scop.berkeley.edu/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="https://scop.berkeley.edu/css/bootstrap-theme.min.css" type="text/css">
+    <LINK rel="stylesheet" href="https://scop.berkeley.edu/css/common.css" type="text/css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
+    <script src="https://scop.berkeley.edu/js/JSmol.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+    <script src="https://scop.berkeley.edu/js/lightbox.js"></script>
+    <script src="https://scop.berkeley.edu/js/jquery.cookie.js"></script>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://scop.berkeley.edu/js/bootstrap.min.js"></script>
+</head>
+
+
+<body id="tab1">
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://scop.berkeley.edu/">
+                <img src="https://scop.berkeley.edu/images/scope_logo_new_36.png"
+                     width=146 height=36 alt="SCOPe"></a>
+        </div> <!-- navbar-header -->
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a id="browseref"
+                       href="https://scop.berkeley.edu/ver=2.05">Browse</a>
+                </li>
+                <li>
+                    <a href="https://scop.berkeley.edu/statistics/ver=2.05">Stats &amp; History</a>
+                </li>
+                <li class="dropdown">
+                    <a href="https://scop.berkeley.edu/downloads/ver=2.05" class="dropdown-toggle"
+                       data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Downloads <span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="https://scop.berkeley.edu/astral/ver=2.05">ASTRAL Sequences &amp; Subsets</a>
+                        </li>
+                        <li>
+                            <a href="https://scop.berkeley.edu/downloads/ver=2.05">Parseable Files &amp; Software</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="https://scop.berkeley.edu/help/ver=2.05" class="dropdown-toggle" data-toggle="dropdown"
+                       role="button" aria-haspopup="true" aria-expanded="false">Help <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="https://scop.berkeley.edu/help/ver=2.05">Online Documentation</a>
+                        </li>
+                        <li>
+                            <a href="https://scop.berkeley.edu/references/ver=2.05">References</a>
+                        </li>
+                        <li>
+                            <a href="https://scop.berkeley.edu/resources/ver=2.05">Related Resources</a>
+                        </li>
+                        <li>
+                            <a href="https://scop.berkeley.edu/about/ver=2.05">About</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-right" role="search" method=GET action="https://scop.berkeley.edu/search/">
+                <div class="form-group">
+                    <input type=hidden name=ver value="2.05">
+                    <input id="searchbox" type="text" class="form-control" placeholder="Search SCOPe" name="key">
+                </div>
+                <button type="submit" class="btn btn-default">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </button>
+            </form>
+        </div> <!-- navbar -->
+    </div> <!-- nav container -->
+</nav>
+
+<!-- LiteMol Start Here -->
+<!-- Heading -->
+<div class="page-header">
+    <a name="a_LiteMol"></a>
+    <h3>Variant Information <small>3D Structure Display</small></h3>
+</div>
+<!-- Description -->
+<div class="row col-md-5">
+    <p class="text-justify"> Gene Name: HRAS </p>
+    <p class="text-justify"> Chromosome Coordinate: 11:534217-534217 </p>
+    <p class="text-justify"> DNA Mutation: c.106A>G  </p>
+    <p class="text-justify"> Mutation Type: Missense </p>
+    <p class="text-justify"> Origin: Germline  </p>
+    <p class="text-justify"> RS ID: rs1060502663 </p>
+    <p class="text-justify"> Protein Change: I36V </p>
+    <p class="text-justify"> Uniprot Accession: P01112 </p>
+    <p class="text-justify"> Neighboring Residues: DPT...I...EDS </p>
+    <p class="text-justify"><small>PDB entry:
+        121P_I36:A
+        1AA9_I36:A
+        1AGP_I36:A
+        1BKD_I36:R
+        1CRP_I36:A
+        1CRQ_I36:A
+        1CRR_I36:A
+        1CTQ_I36:A
+        1GNP_I36:A
+        </small></p>
+</div>
+
+<!-- Demo -->
+<div class="col-md-7">
+    <div class="panel panel-success">
+        <div class="panel-heading">Visualizing Variant <a type="button" class="btn btn-info pull-right" style="padding:1px 12px;"
+                                           href="http://embed.plnkr.co/looflQ9owiGW0m9bh0fF/" target="_blank"></i> Edit
+            in plunker</a></div>
+        <div class="panel-body">
+            <div style="position:relative;height:400px;" id="comp4" class="col-sm-8 col-md-12">
+                <button id="totalButton"
+                        onclick="displayTotalPerPerson('Tom Foolery', 15)"> some customized function
+                </button>
+
+                <div><span id="totalMessage"></span></div>
+
+                <div class="view3d">
+                    <div style="position:relative;height:300px;width:300px;">
+                        <pdb-lite-mol id="litemol_1cbs" pdb-id="'1jmc'" hide-controls="true"></pdb-lite-mol>
+                    </div>
+                </div>
+
+
+                <div class="buttonArea">
+
+                    <button onclick="callMultiHighlightOn()">Color Variants</button>
+                    <button onclick="callSelectFocus()">Select & Focus</button>
+                    <button onclick="callReset()">Reset to default</button>
+                </div>
+
+            </div>
+<!--            <pre><code class="pdbeComp" display-in="comp4" contenteditable="true">&lt;pdb-lite-mol pdb-id="'1cbs'" hide-controls="true" load-ed-maps="true"&gt;&lt;/pdb-lite-mol&gt;</code></pre>-->
+            <br/>
+
+            Domain: 121P_A:Ras family
+            <br/>
+            Subcellular localization: Cell membrane,Cytoplasm,Golgi apparatus,Golgi apparatus membrane
+            <br/>
+
+            <!--            <code>&lt;div style="position:relative;height:600px;width:400px;"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;pdb-lite-mol-->
+<!--                pdb-id="'1cbs'" load-ed-maps="true"&gt;&lt;/pdb-lite-mol&gt;<br>&lt;/div&gt;</code>-->
+        </div>
+    </div>
+</div>
+
+
+<!-- PDB Topology Viewer Start Here -->
+<!-- Heading -->
+<div class="page-header">
+    <a name="a_topologyViewer"></a>
+    <h3>Chain Arrangement Viewer</h3>
+</div>
+<!-- Description -->
+<div class="row col-md-5">
+    <p class="text-justify">Post Translational Motif: - </p>
+    <p class="text-justify">Disease: Costello syndrome</p>
+    <p class="text-justify">Disease Class: Congenital malformations</p>
+    <p class="text-justify">Reference Database: ClinVar</p>
+    <p class="text-justify">Reference ID: 31322</p>
+
+</div>
+<!-- Demo -->
+<div class="col-md-7">
+    <div class="panel-heading">Chain View</div>
+    <div class="panel-body">
+        <div id="comp6" class="col-sm-8" style="position:relative;height:325px;">
+            <pdb-topology-viewer pdb-id="121p" entity-id="1" chain-id="A"></pdb-topology-viewer>
+        </div>
+    </div>
+</div>
+
+
+<!--&lt;!&ndash; PDB UniPDB Viewer Start Here &ndash;&gt;-->
+<!--&lt;!&ndash; Heading &ndash;&gt;-->
+<!--<div class="page-header">-->
+<!--    <a name="a_uniPDBViewer"></a>-->
+<!--    <h3>PDB UniProt Viewer (UniPDB)</h3>-->
+<!--</div>-->
+<!--&lt;!&ndash; Description &ndash;&gt;-->
+<!--<div class="row col-md-4">-->
+<!--    <p class="text-justify">-->
+<!--        The PDB UniProt viewer displays a summary of PDB entries contains a sequence mapped to a particular UniProt code.  The mapping  indicates what coverage of a UnipProt accession is available in the PDB archive. Graphics also indicate whether the sequence in a given PDB entry differs from that in Uniprot (for instance, it contains engineered mutations or expression tags)-->
+<!--    </p>-->
+<!--    <p>-->
+<!--        This component is also available as individual plugin on &lt;!&ndash;<a href="https://www.npmjs.com/package/pdb-uniprot-viewer" target="_blank">npm</a> and &ndash;&gt;<a href="https://github.com/mandarsd/pdb-uniprot-viewer" target="_blank">GitHub</a>.-->
+<!--    </p>-->
+<!--</div>-->
+<!--&lt;!&ndash; Demo &ndash;&gt;-->
+<!--<div class="col-md-8">-->
+<!--    <div class="panel panel-success">-->
+<!--        <div class="panel-heading">Demo</div>-->
+<!--        <div class="panel-body">-->
+<!--            <div id="comp3" class="row col-xs-12"></div>-->
+<!--            <br style="clear:both" />-->
+<!--            <br />-->
+<!--            <pdb-uniprot-viewer entry-id="P07550" height="370" width="750"></pdb-uniprot-viewer>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+
+
+
+
+
+
+

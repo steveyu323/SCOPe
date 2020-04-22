@@ -30,7 +30,7 @@ seq_id INT NOT NULL,
 is_same Bool NOT NULL)
 */
 
-public class CompareUniprotSeqres {
+public class InspectCompare {
   final public static void compareUniSeqRes(int pdbReleaseID) throws Exception {
     System.out.println("current pdbReleaseID is " + pdbReleaseID);
     Statement stmt = LocalSQL.createStatement();
@@ -58,15 +58,6 @@ public class CompareUniprotSeqres {
     rs = stmt.executeQuery("select * from pdb_chain_dbref where db_name = 'UNP' and pdb_align_start is not null and pdb_align_end is not null and pdb_chain_id in (select pdb_chain_id from raf where pdb_chain_id in (select id from pdb_chain where pdb_release_id ="+pdbReleaseID + ") and raf_version_id = 3)");
     if (!rs.next()) {
       System.out.println("rs is empty");
-      stmt4.setInt(1,pdbReleaseID);
-      stmt4.setInt(2,pdb_chain_id);
-      stmt4.setBoolean(3,raf_available);
-      stmt4.setString(4,db_code);
-      stmt4.setInt(5,uniprot_id);
-      stmt4.setInt(6,seq_id);
-      stmt4.setBoolean(7,is_same);
-      stmt4.executeUpdate();
-      stmt.close();
       return;
     } else {
       System.out.println("rs is not empty");
@@ -139,14 +130,6 @@ public class CompareUniprotSeqres {
               System.out.println("astral: " + temp_astral);
               System.out.println("diff = " + temp_raf.replaceAll(temp_astral, "_"));
               is_same = temp_astral.equals(temp_raf);
-              stmt4.setInt(1,pdbReleaseID);
-              stmt4.setInt(2,pdb_chain_id);
-              stmt4.setBoolean(3,raf_available);
-              stmt4.setString(4,db_code);
-              stmt4.setInt(5,uniprot_id);
-              stmt4.setInt(6,seq_id);
-              stmt4.setBoolean(7,is_same);
-              stmt4.executeUpdate();
             }
           }
         } else  {
@@ -172,21 +155,7 @@ public class CompareUniprotSeqres {
 
   final public static void main(String argv[]) {
     try {
-      LocalSQL.connectRW();
-      Statement stmt = LocalSQL.createStatement();
-
-      ResultSet rs;
-      if (argv.length==0) {
-        rs = stmt.executeQuery("select distinct(pdb_release_id) from pdb_chain where id in (select distinct(pdb_chain_id) from raf where last_release_id = 18)");
-        while (rs.next()) {
-          int id = rs.getInt(1);
-          compareUniSeqRes(id);
-        }
-      }
-      else {
         compareUniSeqRes(Integer.parseInt(argv[0]));
-      }
-
     } catch (Exception e) {
       System.out.println("Exception: "+e.getMessage());
       e.printStackTrace();

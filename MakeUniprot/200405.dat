@@ -1,0 +1,53 @@
+ID   BRAF_HUMAN              Reviewed;         766 AA.
+AC   P15056; A4D1T4; B6HY61; B6HY62; B6HY63; B6HY64; B6HY65; B6HY66;
+AC   Q13878; Q3MIN6; Q9UDP8; Q9Y6T3;
+DT   01-NOV-1990, integrated into UniProtKB/Swiss-Prot.
+DT   19-JUL-2004, sequence version 4.
+DT   13-FEB-2019, entry version 230.
+DE   RecName: Full=Serine/threonine-protein kinase B-raf;
+DE            EC=2.7.11.1;
+DE   AltName: Full=Proto-oncogene B-Raf;
+DE   AltName: Full=p94;
+DE   AltName: Full=v-Raf murine sarcoma viral oncogene homolog B1;
+GN   Name=BRAF; Synonyms=BRAF1, RAFB1;
+OS   Homo sapiens (Human).
+OC   Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
+OC   Mammalia; Eutheria; Euarchontoglires; Primates; Haplorrhini;
+OC   Catarrhini; Hominidae; Homo.
+OX   NCBI_TaxID=9606;
+RN   [1]
+RP   NUCLEOTIDE SEQUENCE [MRNA], PARTIAL PROTEIN SEQUENCE, AND
+RP   PHOSPHORYLATION AT THR-373.
+RC   TISSUE=Testis;
+RX   PubMed=1508179; DOI=10.1128/MCB.12.9.3733;
+RA   Stephens R.M., Sithanandam G., Copeland T.D., Kaplan D.R., Rapp U.R.,
+RA   Morrison D.K.;
+RT   "95-kilodalton B-Raf serine/threonine kinase: identification of the
+RT   protein and its major autophosphorylation site.";
+RL   Mol. Cell. Biol. 12:3733-3742(1992).
+RN   [2]
+RP   SEQUENCE REVISION TO 31-33.
+RA   Albert S., Wixler L., Rapp U.R.;
+RL   Submitted (JAN-2004) to the EMBL/GenBank/DDBJ databases.
+RN   [3]
+RP   NUCLEOTIDE SEQUENCE [GENOMIC DNA].
+RG   NIEHS SNPs program;
+RL   Submitted (MAR-2008) to the EMBL/GenBank/DDBJ databases.
+RN   [4]
+RP   NUCLEOTIDE SEQUENCE [LARGE SCALE GENOMIC DNA].
+RX   PubMed=12690205; DOI=10.1126/science.1083423;
+RA   Scherer S.W., Cheung J., MacDonald J.R., Osborne L.R., Nakabayashi K.,
+RA   Herbrick J.-A., Carson A.R., Parker-Katiraee L., Skaug J., Khaja R.,
+RA   Zhang J., Hudek A.K., Li M., Haddad M., Duggan G.E., Fernandez B.A.,
+RA   Kanematsu E., Gentles S., Christopoulos C.C., Choufani S.,
+RA   Kwasnicka D., Zheng X.H., Lai Z., Nusskern D.R., Zhang Q., Gu Z.,
+RA   Lu F., Zeesman S., Nowaczyk M.J., Teshima I., Chitayat D., Shuman C.,
+RA   Weksberg R., Zackai E.H., Grebe T.A., Cox S.R., Kirkpatrick S.J.,
+RA   Rahman N., Friedman J.M., Heng H.H.Q., Pelicci P.G., Lo-Coco F.,
+RA   Belloni E., Shaffer L.G., Pober B., Morton C.C., Gusella J.F.,
+RA   Bruns G.A.P., Korf B.R., Quade B.J., Ligon A.H., Ferguson H.,
+RA   Higgins A.W., Leach N.T., Herrick S.R., Lemyre E., Farra C.G.,
+RA   Kim H.-G., Summers A.M., Gripp K.W., Roberts W., Szatmari P.,
+RA   Winsor E.J.T., Grzeschik K.-H., Teebi A., Minassian B.A., Kere J.,
+SQ   AAAAA
+//

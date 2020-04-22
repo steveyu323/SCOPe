@@ -3,11 +3,13 @@ cd h/lab/notebook/Year2019
 
 cd astral-bin/java/scop/svn/gov/lbl/scop/app/
 
-setenv CLASSPATH /lab/lib/java/strbiolib/cur/src/:/h/ych323/astral-bin/java/scop/svn/:/lab/lib/java/mysql-connector-java-5.1.7-bin.jar:/lab/lib/java/biojava-1.5-beta2.jar:/lab/lib/java/javamail/cur/mail.jar:/lab/lib/java/jaf/cur/activation.jar:/lab/lib/java/apache-commons/commons-cli.jar
+setenv CLASSPATH /h/ych323/astral-bin/java/scop/svn/:/lab/lib/java/strbiolib/cur/src/:/lab/lib/java/mysql-connector-java-5.1.7-bin.jar:/lab/lib/java/javamail/cur/mail.jar:/lab/lib/java/jaf/cur/activation.jar:/lab/lib/java/apache-commons/commons-cli.jar:/h/ych323/astral-bin/java/ych_lib/biojava-core-5.1.1.jar:/h/ych323/astral-bin/java/ych_lib/biojava-alignment-5.1.1.jar:/h/ych323/astral-bin/java/ych_lib/slf4j-api-2.0.0-alpha1.jar
 
-export JAVA_HOME="/h/ych323/jdk/jdk1.8.0_171"
-export PATH="$JAVA_HOME/bin:$PATH"
 
+/h/ych323/astral-bin/java/ych_lib/biojava-biojava-5.1.1/biojava-core/src/main/java/:/h/ych323/astral-bin/java/ych_lib/biojava-biojava-5.1.1/biojava-alignment/src/main/java/    
+
+Bash
+:/lab/lib/java/biojava-1.5-beta2.jar
 
 javac MakePDBSeqadv35Debug_YCH.java
 
@@ -16,6 +18,10 @@ javac MakePDBSeqadv35Debug_JMC.java
 java gov.lbl.scop.app.MakePDBSeqadv35Debug_YCH
 
 java gov.lbl.scop.app.MakePDBSeqadv35Debug_JMC
+
+export JAVA_HOME="/h/ych323/jdk/jdk1.8.0_171"
+export PATH="$JAVA_HOME/bin:$PATH"
+
 
 javac MakeDBUniprot.java
 java gov.lbl.scop.app.MakeDBUniprot /lab/db/uniprot/20190410/uniprot_sprot.dat.gz

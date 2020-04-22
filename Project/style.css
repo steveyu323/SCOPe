@@ -1,0 +1,19 @@
+/* Styles go here */
+
+.buttonArea {
+  float:left;
+  width:150px;
+  text-align:left;
+}
+
+.buttonArea > button {
+  margin-bottom: 10px;
+  float:left;
+}
+
+.view3d {
+  float:right;
+  height:300px;
+  width:300px;
+  position:relative;
+}
